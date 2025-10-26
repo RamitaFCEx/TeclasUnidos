@@ -53,7 +53,7 @@ public class Actividad {
 		return cupo;
 	}
 	public String toString() {
-		return nombre+"*"+lugar;
+		return nombre+"-"+lugar;
 	}
 }
 

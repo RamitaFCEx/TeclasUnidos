@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import teclasunidos.entities.DNIInvalidoException;
 import teclasunidos.entities.NombreMuyLargoException;
 import teclasunidos.entities.Socio;
-import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ABMSociosTest {
@@ -15,7 +14,7 @@ public class ABMSociosTest {
     @Test
     public void nombreMuyLargo(){
         String nombreMuyLargo = "A".repeat(51);
-        Exception exception = assertThrows(NombreMuyLargoException.class, () -> {
+        assertThrows(NombreMuyLargoException.class, () -> {
             new Socio(nombreMuyLargo, 21, "Sarmiento 112", "412488995");;
         });
     }

@@ -5,9 +5,9 @@ public class Recurso {
     private String ubicacion;
 
     public Recurso(String nombre, String ubicacion) {
-    	if (nombre=="Oficina") {
+    	if (nombre!=null && nombre.equalsIgnoreCase("Oficina"))
     		return ;
-    }
+
         this.nombre = nombre;
         this.ubicacion = ubicacion;
     }
