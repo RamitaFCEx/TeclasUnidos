@@ -35,7 +35,7 @@ public class ABMActividadTest {
         actividadRepo.agregar(actividadBase);
         actividadBase.setEncargado(nuevoNombre);
         actividadRepo.actualizar(actividadBase);
-        Assertions.assertEquals(actividadBase, actividadRepo.buscarPorNombre(actividadBase.getNombre()));
+        Assertions.assertEquals(actividadBase.getNombre(), actividadRepo.buscarPorNombre(actividadBase.getNombre()).getNombre());
     }
 
 

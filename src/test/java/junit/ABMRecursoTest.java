@@ -35,7 +35,7 @@ public class ABMRecursoTest {
         recursoRepository.agregar(recursoBase);
         recursoBase.setUbicacion("O".repeat(6));
         recursoRepository.actualizar(recursoBase);
-        Assertions.assertEquals(recursoBase, recursoRepository.buscarPorNombre(recursoBase.getNombre()));
+        Assertions.assertEquals(recursoBase.getUbicacion(), recursoRepository.buscarPorNombre(recursoBase.getNombre()).getUbicacion());
     }
 
     @Test

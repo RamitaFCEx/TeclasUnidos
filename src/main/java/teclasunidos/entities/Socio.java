@@ -1,8 +1,9 @@
 package teclasunidos.entities;
 
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Getter @Setter
 public class Socio {
     private String nombre;
     private int edad;
