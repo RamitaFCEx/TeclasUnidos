@@ -13,16 +13,15 @@ public class ABMSociosTest {
 
     @Test
     public void nombreMuyLargo(){
-        String nombreMuyLargo = "A".repeat(51);
         assertThrows(NombreMuyLargoException.class, () -> {
-            new Socio(nombreMuyLargo, 21, "Sarmiento 112", "412488995");;
+            new Socio("A".repeat(51), 1, "S".repeat(8), "4".repeat(6));;
         });
     }
 
     @Test
     public void deberiaLanzarExcepcionConDNINull(){
         assertThrows(DNIInvalidoException.class, () -> {
-            new Socio("A", 21, "Sarmiento 112", null);
+            new Socio("A", 1, "S".repeat(8), null);
         });
     }
 
@@ -36,7 +35,7 @@ public class ABMSociosTest {
     @NullAndEmptySource
     void deberiaLanzarExcepcionConDNIInvalido(String dni) {
         assertThrows(DNIInvalidoException.class, () -> {
-            new Socio("A", 21, "Sarmiento 112", dni);
+            new Socio("A", 1, "S".repeat(1), dni);
         });
     }
 

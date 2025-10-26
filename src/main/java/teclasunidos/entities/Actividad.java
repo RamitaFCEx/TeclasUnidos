@@ -1,14 +1,28 @@
 package teclasunidos.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Actividad {
+    @Getter @Setter
     private String nombre;
+
+    @Getter @Setter
     private String encargado;
+
+    @Getter @Setter
     private String horario;
+
+    @Getter @Setter
     private int edadMinima;
+
+    @Getter @Setter
     private String lugar;
+
+    @Getter @Setter
     private int cupo;
     private List<Socio> inscriptos = new ArrayList<>();
 
@@ -23,7 +37,7 @@ public class Actividad {
 
     // Getters, setters y métodos auxiliares
     public boolean agregarInscripcion(Socio socio) {
-        if (socio.getEdad() <= edadMinima || inscriptos.size() > cupo) {
+        if (socio.getEdad() <= edadMinima || inscriptos.size() >= cupo) {
             return false;
         }
         return inscriptos.add(socio);
@@ -33,26 +47,7 @@ public class Actividad {
         return inscriptos.remove(socio);
     }
 
-	public String getNombre() {
-		// TODO Auto-generated method stub
-		return nombre;
-	}
-
-	public String getEncargado() {
-		// TODO Auto-generated method stub
-		return encargado;
-	}
-
-	public int getEdadMinima() {
-		// TODO Auto-generated method stub
-		return edadMinima;
-	}
-
-	public int getCupo() {
-		// TODO Auto-generated method stub
-		return cupo;
-	}
-	public String toString() {
+    public String toString() {
 		return nombre+"-"+lugar;
 	}
 }

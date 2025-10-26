@@ -28,10 +28,10 @@ public class Main {
             System.out.println("4. Listar Socios");
             System.out.println("5. Listar Actividades");
             System.out.println("7. Alta de Recurso");
-System.out.println("8. Alta de Recurso");
-System.out.println("9. Reservar Recurso");
-System.out.println("10. Cancelar Reserva");
-System.out.println("11. Salir");
+            System.out.println("8. Alta de Recurso");
+            System.out.println("9. Reservar Recurso");
+            System.out.println("10. Cancelar Reserva");
+            System.out.println("11. Salir");
             System.out.println("6. Salir");
             System.out.print("Opción: ");
             String opcion = scanner.nextLine();
@@ -53,11 +53,11 @@ System.out.println("11. Salir");
                     listarActividades();
                     break;
                case "6":
-    eliminarSocio(scanner);
-    break;
-case "7":
-    eliminarActividad(scanner);
-    break;
+                    eliminarSocio(scanner);
+                    break;
+                case "7":
+                    eliminarActividad(scanner);
+                    break;
                 default:
                     System.out.println("Opción inválida.");
             }
@@ -73,7 +73,6 @@ case "7":
 
 	private static void eliminarSocio(Scanner scanner) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	private static void altaSocio(Scanner scanner) {

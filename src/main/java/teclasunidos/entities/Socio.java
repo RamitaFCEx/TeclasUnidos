@@ -1,5 +1,8 @@
 package teclasunidos.entities;
 
+import lombok.Getter;
+
+@Getter
 public class Socio {
     private String nombre;
     private int edad;
@@ -18,21 +21,6 @@ public class Socio {
 			throw new DNIInvalidoException();
         this.dni = dni;
     }
-
-	public int getEdad() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public String getDni() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public String getNombre() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	private static boolean esNumerosDeLongitudValida(String cadena) {
 		if (cadena == null) {
