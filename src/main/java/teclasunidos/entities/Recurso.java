@@ -1,5 +1,9 @@
 package teclasunidos.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class Recurso {
     private String nombre;
     private String ubicacion;
@@ -11,14 +15,5 @@ public class Recurso {
         this.nombre = nombre;
         this.ubicacion = ubicacion;
     }
-
-	public String getNombre() {
-		return nombre;
-	}
-	public String getUbicacion() {
-		return ubicacion;
-	}
-
-    // Getters y setters
 }
 
