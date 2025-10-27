@@ -1,26 +1,22 @@
-package junit;
+package testng;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
-import org.junit.jupiter.params.provider.ValueSource;
-import org.testng.log4testng.Logger;
+import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import teclasunidos.entities.DNIInvalidoException;
 import teclasunidos.entities.EdadInvalidaException;
 import teclasunidos.entities.NombreMuyLargoException;
 import teclasunidos.entities.Socio;
 import teclasunidos.repositories.SocioRepository;
-import testng.ABMSocioTest;
+import static org.testng.Assert.assertThrows;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+public class ABMSocioTest {
 
-public class ABMSociosTest {
     SocioRepository socioRepository;
     Socio socioBase;
 
-    @BeforeEach
+    @BeforeTest
     public void setup() throws EdadInvalidaException, DNIInvalidoException, NombreMuyLargoException {
         socioRepository = new SocioRepository();
         socioBase = new Socio("A", 1, "S".repeat(1), "4".repeat(6));
@@ -29,14 +25,14 @@ public class ABMSociosTest {
     @Test
     public void altaSocio(){
         socioRepository.agregar(socioBase);
-        Assertions.assertNotNull(socioRepository.buscarPorDni(socioBase.getDni()));
+        Assert.assertNotNull(socioRepository.buscarPorDni(socioBase.getDni()));
     }
 
     @Test
     public void bajaSocio(){
         socioRepository.agregar(socioBase);
         socioRepository.eliminar(socioBase.getDni());
-        Assertions.assertNull(socioRepository.buscarPorDni(socioBase.getDni()));
+        Assert.assertNull(socioRepository.buscarPorDni(socioBase.getDni()));
     }
 
     @Test
@@ -44,7 +40,7 @@ public class ABMSociosTest {
         socioRepository.agregar(socioBase);
         socioBase.setDireccion("D".repeat(5));
         socioRepository.actualizar(socioBase);
-        Assertions.assertEquals(socioBase.getDireccion(), socioRepository.buscarPorDni(socioBase.getDni()).getDireccion());
+        Assert.assertEquals(socioBase.getDireccion(), socioRepository.buscarPorDni(socioBase.getDni()).getDireccion());
     }
 
     @Test
@@ -54,19 +50,22 @@ public class ABMSociosTest {
         });
     }
 
-    @ParameterizedTest(name = "DNI Inválido: {0}")
-    @ValueSource(strings = {
-            "88888888",     // Muy largo (8)
-            "55555",        // Muy corto (5)
-            "66666.",       // Con punto
-            "111111A"      // Con letra
-    })
-    @NullAndEmptySource
+    @DataProvider(name = "dniInvalidosProvider")
+    public Object[][] provideDNIInvalidos(){
+        return new Object[][]{
+                {"88888888"},     // Muy largo (8)
+                {"55555"},        // Muy corto (5)
+                {"66666."},       // Con punto
+                {"111111A"},       // Con letra
+                {null},
+                {""}
+        };
+    }
+
+    @Test(dataProvider = "dniInvalidosProvider")
     void deberiaLanzarExcepcionConDNIInvalido(String dni) {
         assertThrows(DNIInvalidoException.class, () -> {
             new Socio("A", 1, "S".repeat(1), dni);
         });
     }
-
-
 }

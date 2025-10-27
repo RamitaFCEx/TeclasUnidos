@@ -1,14 +1,13 @@
-package junit;
+package testng;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 import teclasunidos.entities.*;
 import teclasunidos.services.ReservaService;
 
 import java.time.LocalDateTime;
 
 public class ABMReservaTest {
-
     @Test
     public void eliminarReservaDeOtroUsuarioNoTieneEfecto() throws EdadInvalidaException, DNIInvalidoException, NombreMuyLargoException {
         Recurso r = new Recurso("Silla", "Tandil");
@@ -20,9 +19,9 @@ public class ABMReservaTest {
         ReservaService reservaService = new ReservaService();
 
         // Se hace la reserva para el socio1
-        Assertions.assertTrue(reservaService.reservar(r, socio1, inicio, fin));
+        Assert.assertTrue(reservaService.reservar(r, socio1, inicio, fin));
 
         // Socio2 intenta cancelar la reserva anterior, se espera que no tenga efecto en el sistema
-        Assertions.assertFalse(reservaService.cancelarReserva(r, socio2, inicio, fin));
+        Assert.assertFalse(reservaService.cancelarReserva(r, socio2, inicio, fin));
     }
 }

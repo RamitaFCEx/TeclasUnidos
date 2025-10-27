@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SuiteDePruebas" verbose="1">
+
+    <test name="Reserva">
+        <classes>
+            <class name="testng.ABMReservaTest"/>
+        </classes>
+    </test>
+
+    <test name="Socio">
+        <classes>
+            <class name="testng.ABMSocioTest"/>
+        </classes>
+    </test>
+
+    <test name="Actividad">
+        <classes>
+            <class name="testng.ABMActividadTest"/>
+        </classes>
+    </test>
+
+    <test name="Recurso">
+        <classes>
+            <class name="testng.ABMRecursoTest"/>
+        </classes>
+    </test>
+
+</suite>
